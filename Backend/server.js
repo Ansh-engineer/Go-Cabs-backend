@@ -263,7 +263,7 @@ app.get('/getrides/:userId', async (req, res) => {
   }
 });
 
-const port=process.env.PORT || 5000;
-app.listen(port, () => {
-  console.log("listening at ${PORT}")
+const PORT=process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`listening at ${PORT}`)
 })
