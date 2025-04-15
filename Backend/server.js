@@ -25,10 +25,6 @@ app.use(express.json())
 app.use(cors())
 app.use('/uploads', express.static('uploads'));
 
-app.get("/",(req,resp) =>{
-  resp.json("Shaan test") 
-}
-
 // Admin login api
 app.post('/alogin', (req, resp) => {  
   const { email, password } = req.body;   
@@ -228,6 +224,7 @@ app.post('/rides', async (req, res) => {
 
 
 app.get('/getrides', async (req, res) => {
+  console.log("connected succesfully");
   try {
     const rides = await mybookings.find();   
     res.json(rides);
