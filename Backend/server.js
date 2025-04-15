@@ -22,16 +22,12 @@ const app = express();
 
 // Middleware
 app.use(express.json())
-app.use(cors(
-  {
-      origin: ["http://localhost:3000"],
-      methods: ["POST", "GET", "DELETE", "PUT"],
-      credentials: true
-  }
-))
+app.use(cors())
 app.use('/uploads', express.static('uploads'));
 
-
+app.get("/",(req,resp) =>{
+  resp.json("Shaan test") 
+}
 
 // Admin login api
 app.post('/alogin', (req, resp) => {  
