@@ -265,7 +265,7 @@ app.get('/getrides/:userId', async (req, res) => {
 
 const PORT = 6000;
 
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 }).on('error', (err) => {
   console.error('Server crashed due to error:', err);
