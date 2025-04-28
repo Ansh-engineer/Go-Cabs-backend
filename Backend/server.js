@@ -9,6 +9,7 @@ const mybookings = require('./db/Mybookings')
 const multer = require('multer');
 
 
+const app = express();
 // app.use(cors());
 
 const corsOptions = {
@@ -29,7 +30,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage }); 
-const app = express();
 
 // Middleware
 app.use(express.json())
