@@ -12,8 +12,10 @@ const multer = require('multer');
 const app = express();
 // app.use(cors());
 
+const FRONTEND_URL = 'https://go-cabs-frontend.vercel.app'; 
+
 const corsOptions = {
-  origin: 'https://go-cabs-frontend.vercel.app/',  // <-- Your frontend URL
+  origin: 'FRONTEND_URL',  // <-- Your frontend URL
   credentials: true,                // <-- Allow cookies and credentials
 };
 
