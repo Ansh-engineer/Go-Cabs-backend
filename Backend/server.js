@@ -7,7 +7,7 @@ const users=require('./db/UserSchema')
 const Car = require('./db/car')
 const mybookings = require('./db/Mybookings')
 const multer = require('multer');
-const cors = require('cors');
+
 
 app.use(cors());
 connectDB()
@@ -24,13 +24,13 @@ const app = express();
 
 // Middleware
 app.use(express.json())
-app.use(cors(
-  {
-      origin: ["http://localhost:3000"],
-      methods: ["POST", "GET", "DELETE", "PUT"],
-      credentials: true
-  }
-))
+// app.use(cors(
+//   {
+//       origin: ["http://localhost:3000"],
+//       methods: ["POST", "GET", "DELETE", "PUT"],
+//       credentials: true
+//   }
+// ))
 app.use('/uploads', express.static('uploads'));
 
 
