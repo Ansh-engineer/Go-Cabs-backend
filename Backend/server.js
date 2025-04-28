@@ -9,7 +9,7 @@ const mybookings = require('./db/Mybookings')
 const multer = require('multer');
 
 
-app.use(cors());
+// app.use(cors());
 connectDB()
 // Set up Multer for file upload
 const storage = multer.diskStorage({
@@ -24,13 +24,13 @@ const app = express();
 
 // Middleware
 app.use(express.json())
-// app.use(cors(
-//   {
-//       origin: ["http://localhost:3000"],
-//       methods: ["POST", "GET", "DELETE", "PUT"],
-//       credentials: true
-//   }
-// ))
+app.use(cors(
+  {
+      origin: ["*","https://go-cabs-backend.onrender.com"],
+      methods: ["POST", "GET", "DELETE", "PUT"],
+      credentials: true
+  }
+))
 app.use('/uploads', express.static('uploads'));
 
 
