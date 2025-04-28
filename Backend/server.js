@@ -15,7 +15,7 @@ const app = express();
 const FRONTEND_URL = 'https://go-cabs-frontend.vercel.app'; 
 
 const corsOptions = {
-  origin: 'FRONTEND_URL',  // <-- Your frontend URL
+  origin: FRONTEND_URL,  // <-- Your frontend URL
   credentials: true,                // <-- Allow cookies and credentials
 };
 
