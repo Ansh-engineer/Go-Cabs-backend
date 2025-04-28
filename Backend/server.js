@@ -7,7 +7,9 @@ const users=require('./db/UserSchema')
 const Car = require('./db/car')
 const mybookings = require('./db/Mybookings')
 const multer = require('multer');
+const cors = require('cors');
 
+app.use(cors());
 connectDB()
 // Set up Multer for file upload
 const storage = multer.diskStorage({
@@ -22,8 +24,16 @@ const app = express();
 
 // Middleware
 app.use(express.json())
-app.use(cors())
+app.use(cors(
+  {
+      origin: ["http://localhost:3000"],
+      methods: ["POST", "GET", "DELETE", "PUT"],
+      credentials: true
+  }
+))
 app.use('/uploads', express.static('uploads'));
+
+
 
 // Admin login api
 app.post('/alogin', (req, resp) => {  
@@ -211,9 +221,9 @@ app.delete('/userdelete/:id', async (req, res) => {
 
      // Bookings //
 app.post('/rides', async (req, res) => {
-  const {  selectedPickupState, selectedPickupCity, selectedDropState, selectedDropCity, pickupdate, pickuptime,dropdate,droptime,bookeddate,userId,userName,drivername,fare,carname, cartype, carno,price } = req.body;
+  const {  selectedPickupState, selectedPickupCity, selectedDropState, selectedDropCity, pickupdate, pickuptime,dropdate,droptime,bookeddate,userId,userName,drivername,fare,carname, cartype, carno,price, longi } = req.body;
   try {
-    const book = new mybookings({ selectedPickupState, selectedPickupCity, selectedDropState, selectedDropCity,pickupdate, pickuptime,dropdate,droptime,bookeddate,userId,userName,drivername,fare,carname, cartype, carno,price });
+    const book = new mybookings({ selectedPickupState, selectedPickupCity, selectedDropState, selectedDropCity,pickupdate, pickuptime,dropdate,droptime,bookeddate,userId,userName,drivername,fare,carname, cartype, carno,price, longi });
     await book.save();
     res.status(201).json(book);
   } catch (err) {
@@ -224,7 +234,6 @@ app.post('/rides', async (req, res) => {
 
 
 app.get('/getrides', async (req, res) => {
-  console.log("connected succesfully");
   try {
     const rides = await mybookings.find();   
     res.json(rides);
@@ -256,11 +265,7 @@ app.get('/getrides/:userId', async (req, res) => {
   }
 });
 
-const PORT = 6000;
 
-app.listen(PORT,'0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
-}).on('error', (err) => {
-  console.error('Server crashed due to error:', err);
-});
-
+app.listen(8000, () => {
+  console.log("listening at 8000")
+})
