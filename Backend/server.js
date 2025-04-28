@@ -10,6 +10,15 @@ const multer = require('multer');
 
 
 // app.use(cors());
+
+const corsOptions = {
+  origin: 'http://localhost:3000',  // <-- Your frontend URL
+  credentials: true,                // <-- Allow cookies and credentials
+};
+
+app.use(cors(corsOptions));
+
+
 connectDB()
 // Set up Multer for file upload
 const storage = multer.diskStorage({
@@ -24,13 +33,13 @@ const app = express();
 
 // Middleware
 app.use(express.json())
-app.use(cors(
-  {
-      origin: ["*","https://go-cabs-backend.onrender.com"],
-      methods: ["POST", "GET", "DELETE", "PUT"],
-      credentials: true
-  }
-))
+// app.use(cors(
+//   {
+//       origin: ["*","https://go-cabs-backend.onrender.com"],
+//       methods: ["POST", "GET", "DELETE", "PUT"],
+//       credentials: true
+//   }
+// ))
 app.use('/uploads', express.static('uploads'));
 
 
