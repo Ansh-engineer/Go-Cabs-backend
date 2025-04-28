@@ -13,7 +13,7 @@ const app = express();
 // app.use(cors());
 
 const corsOptions = {
-  origin: 'https://go-cabs-loy2.vercel.app/',  // <-- Your frontend URL
+  origin: 'https://go-cabs-frontend.vercel.app/',  // <-- Your frontend URL
   credentials: true,                // <-- Allow cookies and credentials
 };
 
